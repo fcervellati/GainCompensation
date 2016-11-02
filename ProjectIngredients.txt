@@ -1,0 +1,41 @@
+APPETIZERS																Total	Real
+	Squid Rings: Squids, Bread Crumbs, Sweet Paprika, Salt, Olive Oil								5	4
+	Rice Arancini: Butter, Rice, Salt, Scamorza, Ham, Mozzarella, Bread Crumbs, Olive Oil						8	5
+	Aromatic Chicken Sticks: Chicken Breast, Chili Pepper, Onion, Mint, Egg, Bread, Ginger						7	5
+	Grilled Eggplants Boats:  Eggplants, Bread, Garlic, Mint, Olive Oil, Salt, Pepper, Vinegar					8	5
+
+
+FIRST COURSES
+	Truffle Pasta: Pasta, Truffles, Butter, Olive Oil, Salt, Garlic									6	5
+	Beans and Squids Pasta: Pasta, Squids, Tomatoes, Chili Pepper, Garlic, Olive Oil, Salt						7	5
+	Peach and Pasta Salad: Pasta, Tomatoes, Peaches, Salt, Pepper, Feta Cheese, Basil						7	6
+	Ham and Melon Rice Salad: Rice, Olive Oil, Salt, Melon, Ham, Pepper								6	5
+	Paella de Mariscos: Mussels, Squids, Tomatoes, Prawns, Onion, Garlic, Olive Oil, Sweet Paprika, Chili Pepper, Rice		10	5
+
+SECOND COURSES
+	Fried Chicken Wings: Chicken Wings, 00Flour, Eggs, Sweet Paprika, Salt, Pepper, Olive Oil					7	4
+	Cordon Bleu: Chicken Breast, Ham, Scamorza, Eggs, Bread Crumbs, Olive Oil							6	4
+	Honey and Ginger Pork Fillet: Pork Fillet, Ginger, Honey, Olive Oil, Chili Pepper, Salt						6	4
+	Stuffed Zucchini: Zucchini, Bread, Onions, Tomatoes, Parmesan Cheese, Olive Oil, Salt, Pepper					8	5
+	Fish Sticks: Cod, 00Flour, Eggs, Salt, Bread Crumbs, Olive Oil									6	5
+
+
+DESSERTS
+	Brownies: Chocolate, Eggs, Butter, 00Flour, Sugar, Hazelnuts									6	5
+	Apple Muffins: Apples, 00Flour, Yogurt, Eggs, Sugar										5	4
+	Orange Cake: Butter, 00Flour, Eggs, Sugar, Orange										5	5
+	Chocolate Cake: Chocolate, 00Flour, Sugar, Eggs, Butter, Salt									6	5
+
+
+
+
+INGREDIENTS:
+	Bread and Pasta: Bread, Bread Crumbs, Rice, Pasta, 00Flour
+	Meats & Eggs: Ham, Chicken Breast, Chicken Wings, Pork Fillet, Eggs
+	Seafood: Squids, Mussels, Prawns, Cod
+	Cheese: Butter, Mozzarella, Feta, Scamorza, Parmesan
+	Spices: Sweet Paprika, Salt, Chili Pepper, Ginger, Pepper
+	Vegetables: Onion, Garlic, Tomatoes, Eggplants, Zucchini
+	Fruit: Melon, Peaches, Hazelnuts, Apples, Orange
+	Dressings: Olive Oil, Vinegar, Truffles, Basil, Mint
+	Sweets: Honey, Chocolate, Sugar, Yogurt
