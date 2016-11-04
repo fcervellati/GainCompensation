@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour {
 	public string zone;
 	private float CurrGain;
 	public Text txt;
+	public GameObject canvas;
+	public bool active = true;
+	public float time = 0f;
+	public bool counting = false;
 	public recipe CurrRec;
 	public ing CurrIng;
 
@@ -49,12 +53,13 @@ public class PlayerController : MonoBehaviour {
 		initialize();															//initialize recipes and ingredients
 		gains.values = new float[] { 0.6f, 0.8f, 1.0f, 1.2f, 1.4f };
 		gains.times = new int[] { 5, 5, 5, 5, 5 };
-		txt = gameObject.GetComponentInChildren<Text> ();						//initialize txt to the Text object in game
+
 		CurrGain = newgain();
 		yield return StartCoroutine (appetizers ());
 		yield return StartCoroutine (firstcourses());
 		yield return StartCoroutine (secondcourses());
 		yield return StartCoroutine (desserts());
+		txt.text = "Congratulations, your fabolous dinner is ready! \n\n Buon Appetito!";
 		yield return null;
 		//txt.text = "Current Gain: " + CurrGain;
 	}
@@ -74,6 +79,20 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey(KeyCode.E))
 			transform.Translate(Tspeed * Time.deltaTime * CurrGain, 0, 0);
 
+		if (Input.GetKey (KeyCode.R) && !active) {												//if R is pressed, activate text for 4 seconds
+			active = true;
+			canvas.SetActive (true);
+			time = 4f;
+			counting = true;
+		}
+		if (time > 0f)
+			time -= Time.deltaTime;
+		if (!(time > 0f) && counting == true) {
+			active = false;
+			canvas.SetActive (false);
+			counting = false;
+		}
+		
 		//txt.text = "Current Gain: " + CurrGain;
 	}
 
@@ -165,18 +184,33 @@ public class PlayerController : MonoBehaviour {
 		for (int i = 0; CurrRec.ingredients[i].name != "end"; i++)
 			t++;
 		for (int i = 0; i < t; i++) {
+			active = true;
+			canvas.SetActive (true);
+			time = 0f;		//in case the player picks an object up shortly after having called the text back
+			counting = false;
 			CurrIng = CurrRec.ingredients [i];
 			txt.text = "You are now cooking " + CurrRec.name + ".\n Please, go fetch some " + CurrIng.name;
 			yield return StartCoroutine (waitpickup ());
 		}
+		active = true;
+		canvas.SetActive (true);
+		counting = false;
+		time = 0f;
 		txt.text = "You have collected everything, go drop it in the kitchen";
 		CurrIng = end;
 		yield return StartCoroutine (waitpickup ());
+		active = true;
+		canvas.SetActive (true);
+		time = 0f;
+		counting = false;
 	}
 	
 
 	IEnumerator waitpickup () {														//stop script until CurrIng is picked up
-		while (!(Input.GetKeyDown ("space") && (zone == CurrIng.name)))
+		yield return new WaitForSeconds (4f);										//disable text after 3 seconds
+		active = false;
+		canvas.SetActive (false);
+		while (!(Input.GetKeyDown ("space") && (zone == CurrIng.name)))				//press SPACE to pick up ingredients
 			yield return null;
 	}
 
@@ -189,7 +223,7 @@ public class PlayerController : MonoBehaviour {
 		while (!Input.GetKeyDown ("1") && !Input.GetKeyDown ("2") && !Input.GetKeyDown ("3") && !Input.GetKeyDown ("4"))
 			yield return null;
 	}
-
+		
 
 	float newgain() {
 		int t, s;
@@ -278,7 +312,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		app1.name = "Squid Rings";				
-		app1.ingredients = new ing[] {BreadCrumbs, Squids, Paprika, Salt, OliveOil, end};
+		app1.ingredients = new ing[] { BreadCrumbs, Squids, Paprika, Salt, OliveOil, end};
 		app2.name = "Rice Arancini";			
 		app2.ingredients = new ing[] {BreadCrumbs, Rice, Ham, Butter, Scamorza, Mozzarella, Salt, OliveOil, end};
 		app3.name = "Aromatic Chicken Sticks";
