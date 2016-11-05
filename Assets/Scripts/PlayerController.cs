@@ -189,14 +189,14 @@ public class PlayerController : MonoBehaviour {
 			time = 0f;		//in case the player picks an object up shortly after having called the text back
 			counting = false;
 			CurrIng = CurrRec.ingredients [i];
-			txt.text = "You are now cooking " + CurrRec.name + ".\n Please, go fetch some " + CurrIng.name;
+			txt.text = "You are currently cooking " + CurrRec.name + ".\n\n Please, go fetch some " + CurrIng.name + ".";
 			yield return StartCoroutine (waitpickup ());
 		}
 		active = true;
 		canvas.SetActive (true);
 		counting = false;
 		time = 0f;
-		txt.text = "You have collected everything, go drop it in the kitchen";
+		txt.text = "You have collected everything, go drop it in the kitchen.";
 		CurrIng = end;
 		yield return StartCoroutine (waitpickup ());
 		active = true;
