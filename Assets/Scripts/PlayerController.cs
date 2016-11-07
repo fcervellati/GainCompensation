@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 
 	IEnumerator Start () {
 		initialize();															//initialize recipes and ingredients
-		gains.values = new float[] { 0.6f, 0.8f, 1.0f, 1.2f, 1.4f };
+		gains.values = new float[] { 0.8f, 0.9f, 1.0f, 1.2f, 1.4f };
 		gains.times = new int[] { 5, 5, 5, 5, 5 };
 
 		CurrGain = newgain();
