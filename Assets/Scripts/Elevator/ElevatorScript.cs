@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ElevatorScript : MonoBehaviour {
 	
@@ -7,23 +8,38 @@ public class ElevatorScript : MonoBehaviour {
 	public float  y;
 	Animator anim;
 	public float speed;
-	public GameObject Player;
-	public PlayerController plScript;
+	public GameObject Camera;
+	public CameraController camScript;
 	public Vector3 target;
+	private int CurrSel;
+	public GameObject ElevCanvas;
+	public Text ElevText;
+	private bool go;
 
-	void Start () {
+	IEnumerator Start () {
 		anim = GetComponent<Animator> ();
 		moving = false;
-		plScript = Player.GetComponent<PlayerController>();
-
+		go = false;
+		camScript = Camera.GetComponent<CameraController>();
+		CurrSel = 0;
+		ElevCanvas.SetActive (false);
+		for (int i = 1; i > 0; i++) {
+			yield return StartCoroutine (waiting ());									//do nothing until the player wants to use the elevator
+			yield return new WaitForSeconds (0.1f);
+			yield return selFloor ();													//select target floor
+			ElevCanvas.SetActive (false);
+			go = true;																	//start movement
+			yield return new WaitForSeconds (0.1f);
+		}
 	}
 
 	void Update () {
 		
-		if (Input.GetKeyDown (KeyCode.F) && Player.transform.parent != null && !moving) {					//move with F only if the player is in the elevator
+		if (go) {															//move with F only if the player is in the elevator
 			anim.Play ("CloseDoors");
-			target = new Vector3 (0, plScript.CurrIng.floor * 7.5f, -8.25f);
+			target = new Vector3 (0, CurrSel * 7.5f, -8.25f);
 			moving = true;
+			go = false;
 		}
 
 		if (moving) {
@@ -39,7 +55,33 @@ public class ElevatorScript : MonoBehaviour {
 		}
 
 	}
+
+	IEnumerator selFloor() {
+		while (!Input.GetKeyDown(KeyCode.F)) {
+			if (Camera.transform.parent == null) {
+				ElevCanvas.SetActive (false);
+				yield return StartCoroutine (waitreturn ());
+			}
+			ElevCanvas.SetActive(true);
+			ElevText.text = "Please select the floor you want to go to: \n0: Kitchen\n1: Bread & Pasta\n2: Meat & Eggs\n3: Seafood\n4:Cheese\n5: Spices" +
+				"\n6: Vegetables\n7: Fruit\n8: Dressings\n9: Sweets\nYour current choice is floor number " + CurrSel;
+			if (Input.GetKeyDown(KeyCode.G))
+				CurrSel++;
+			if (CurrSel == 10)
+				CurrSel = 0;
+			yield return null;
+		}
+	}
+
+	IEnumerator waiting () {
+		while (!(Input.GetKeyDown (KeyCode.F) && Camera.transform.parent != null && !moving))
+			yield return null;
+	}
 			
+	IEnumerator waitreturn () {
+		while (Camera.transform.parent == null)
+			yield return null;
+	}
 }
 	
 
